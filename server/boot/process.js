@@ -23,13 +23,11 @@ module.exports = function(app) {
       if (config.accepted_extensions.includes(ext)) {
         // Do the thing
         let data = {
-          'name': name,
-          'path': path.join(fileDir, filename),
           'caption': filename,
+          'extension': ext
         };
 
         app.models.Image.create(data, (err, record) => {
-          console.log(record);
           let srcFilepath = path.join(queueDir, filename);
           let destFilepath =
             path.join('client', fileDir, record.id + '.' + ext);
@@ -38,6 +36,8 @@ module.exports = function(app) {
             if (err) {
               return false;
             }
+
+            console.log('Copied File:', filename);
           });
         });
       } else {
