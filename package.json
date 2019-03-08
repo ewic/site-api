@@ -12,6 +12,7 @@
     "build": "webpack --config ./server/webpack.config.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "helmet": "^3.10.0",
