@@ -3,7 +3,13 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
+var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackConfig = require('../webpack.config.js');
+
 var app = module.exports = loopback();
+
+app.use(webpackDevMiddleware(webpack(webpackConfig)));
 
 app.start = function() {
   // start the web server

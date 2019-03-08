@@ -10,6 +10,10 @@
     "caption": {
       "type": "string",
       "required": false
+    },
+    "ext": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

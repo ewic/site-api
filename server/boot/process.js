@@ -24,7 +24,7 @@ module.exports = function(app) {
         // Do the thing
         let data = {
           'caption': filename,
-          'extension': ext
+          'extension': ext,
         };
 
         app.models.Image.create(data, (err, record) => {
