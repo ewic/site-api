@@ -2,6 +2,7 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var path = require('path');
 
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
