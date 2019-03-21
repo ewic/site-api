@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { withRouter } from 'react-router-dom';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 export default class NavBar extends React.Component {
-  state = {
-    value: '',
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.initView,
+    }
   }
 
   handleChange = (event, value) => {
