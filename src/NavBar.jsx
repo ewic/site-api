@@ -26,7 +26,7 @@ export default class NavBar extends React.Component {
     return (
       <div className="nav" id="nav">
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
+          <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
             <Tab label="Home" value="" />
             <Tab label="Portfolio" value="portfolio" />
             <Tab label="Contact" value="contact" />

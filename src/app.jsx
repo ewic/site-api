@@ -41,7 +41,10 @@ export default class App extends React.Component {
   }
 
   handleNav = (view) => {
-    this.setState({currentView: this.renderView(view)}, () => {
+    this.setState({
+      currentView: this.renderView(view),
+      pathname: this.props.location.pathname.split('/')[1]
+    }, () => {
       if (this.state.pathname != view)
         this.props.history.push(view);
     });
