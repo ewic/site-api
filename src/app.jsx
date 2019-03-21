@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Route, Link } from 'react-router-dom';
-
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import NavBar from './NavBar.jsx';
@@ -19,21 +17,45 @@ function Portfolio() {
   return <h2>Portfolio</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function Contact() {
+  return <h2>Contact</h2>;
 }
 
 export default class App extends React.Component {
+  state = {
+    currentView: ''
+  }
+
+  handleNav = (view) => {
+    this.props.history.push(view);
+    console.log(this.props.history);
+
+    this.setState({currentView: this.renderView(view)})
+  }
+
+  renderView = (view) => {
+    switch (view) {
+      case 'portfolio':
+        return Portfolio();
+        break;
+      case 'contact':
+        return Contact();
+        break;
+      case '':
+      default:
+        return Index();
+    }
+  }
+
   render() {
+    let view = this.state.currentView;
+
     return (
       <MuiThemeProvider theme={theme}>
         <div id="app-root">
-          <NavBar />
+          <NavBar handleNav={this.handleNav}/>
+          {view}           
         </div>
-
-        <Route path="/" exact component={Index} />
-        <Route path="/portfolio/" component={Portfolio} />
-        <Route path="/users/" component={Users} />
       </MuiThemeProvider>
     )
   }
