@@ -1,79 +1,76 @@
 import React from 'react';
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
-import NavBar from './NavBar.jsx';
+import NavDrawer from './NavDrawer.jsx';
+
+/* Style and theming */
+import classes from './classes.jsx';
 import theme from './Theme.jsx';
 
 /* Controllers */
 import PortfolioController from './controllers/PortfolioController.js';
 
 /* Views */
+import HomeView from './views/HomeView.jsx';
 import PortfolioView from './views/PortfolioView.jsx';
 
-function Index() {
-  return <h2>Home</h2>;
+function Index(props) {
+  return <HomeView classes={classes} />;
 }
 
-function Portfolio() {
+function Portfolio(props) {
+  const { classes } = props;
+
   let controller = new PortfolioController();
-  return <PortfolioView />;
+  return <PortfolioView controller={controller} classes={classes} />;
 }
 
-function Contact() {
-  return <h2>Contact</h2>;
+function Contact(props) {
+  return <ContactView classes={classes} />
 }
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentView: '', // Replace with loading screen?
-      pathname: props.location.pathname.split('/')[1]
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      currentView: this.renderView(this.state.pathname)
-    });
-  }
-
-  handleNav = (view) => {
-    this.setState({
-      currentView: this.renderView(view),
-      pathname: this.props.location.pathname.split('/')[1]
-    }, () => {
-      if (this.state.pathname != view)
-        this.props.history.push(view);
-    });
-  }
-
-  renderView = (view) => {
-    switch (view) {
-      case 'portfolio':
-        return Portfolio();
-        break;
-      case 'contact':
-        return Contact();
-        break;
-      case '':
-      default:
-        return Index();
-    }
-  }
-
-  render() {
-    let view = this.state.currentView;
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div id="app-root">
-          <NavBar handleNav={this.handleNav} initView={this.state.pathname} />
-          {view}
-        </div>
-      </MuiThemeProvider>
-    )
+function renderView(view) {
+  switch (view) {
+    case 'portfolio':
+      return Portfolio();
+      break;
+    case 'contact':
+      return Contact();
+      break;
+    case '':
+    default:
+      return Index();
   }
 }
+
+function handleNav(view) {
+
+  return 'Test';
+
+}
+
+function App(props) {
+  const { classes } = props;
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <div id="app-root">
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              Home
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <NavDrawer handleNav={handleNav} classes={classes} />
+        
+      </div>
+    </MuiThemeProvider>
+  )
+
+};
+
+export default withStyles(classes)(App);
