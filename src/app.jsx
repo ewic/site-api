@@ -47,7 +47,7 @@ function renderView(view) {
 
 function handleNav(view) {
 
-  return 'Test';
+  console.log(view);
 
 }
 
