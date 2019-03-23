@@ -5,6 +5,15 @@ export default styles => ({
     display: 'flex',
   },
 
+  avatar: {
+    padding: 10,
+    textAlign: 'center',
+  },
+
+  avatarTypography: {
+    textAlign: 'center',
+  },
+
   contentView: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
