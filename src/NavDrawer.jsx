@@ -20,12 +20,14 @@ import {
   Home,
   PhotoLibrary,
   Person,
+  Info,
 } from '@material-ui/icons';
 import {
   mdiAccount,
   mdiInstagram,
   mdiGithubCircle,
   mdiYoutube,
+  mdiLinkedinBox
 } from '@mdi/js'
 
 const NavDrawerItems = [
@@ -44,6 +46,11 @@ const NavDrawerItems = [
     icon: <Person />,
     target: '/contact',
   },
+  {
+    text: "About",
+    icon: <Info />,
+    target: '/about',
+  },
 ]
 
 const AvatarButtons = [
@@ -53,6 +60,7 @@ const AvatarButtons = [
               size={1}
               horizontal
               vertical
+              color='#333'
               rotate={180} />,
     target: "http://instagram.com/ewicexclamationpoint",
   },
@@ -62,8 +70,19 @@ const AvatarButtons = [
               size={1}
               horizontal
               vertical
+              color='#333'
               rotate={180} />,
     target: "https://www.youtube.com/user/TheEwic",
+  },
+  {
+    text: "LinkedIn",
+    icon: <Icon path={mdiLinkedinBox}
+              size={1}
+              horizontal
+              vertical
+              color='#333'
+              rotate={180} />,
+    target: "http://www.linkedin.com/in/ewic",
   },
   {
     text: "Github",
@@ -71,6 +90,7 @@ const AvatarButtons = [
               size={1}
               horizontal
               vertical
+              color='#333'
               rotate={180} />,
     target: "http://github.com/",
   },
@@ -105,7 +125,7 @@ function NavDrawer(props) {
       <Divider />
       <List>
         {NavDrawerItems.map(item => (
-          <Link to={item.target} key={item.text}>
+          <Link to={item.target} key={item.text} style={{ textDecoration: 'none', }}>
             <ListItem button>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />

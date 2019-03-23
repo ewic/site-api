@@ -17,6 +17,7 @@ import PortfolioController from './controllers/PortfolioController.js';
 import HomeView from './views/HomeView.jsx';
 import PortfolioView from './views/PortfolioView.jsx';
 import ContactView from './views/ContactView.jsx';
+import AboutView from './views/AboutView.jsx';
 
 function Index(props) {
   return <HomeView classes={classes} />;
@@ -31,18 +32,8 @@ function Contact(props) {
   return <ContactView classes={classes} />
 }
 
-function renderView(view) {
-  switch (view) {
-    case 'portfolio':
-      return Portfolio();
-      break;
-    case 'contact':
-      return Contact();
-      break;
-    case '':
-    default:
-      return Index();
-  }
+function About(props) {
+  return <AboutView classes={classes} />
 }
 
 function App(props) {
@@ -57,6 +48,7 @@ function App(props) {
           <Route path="/" exact component={Index} />
           <Route path="/portfolio" component={Portfolio} />
           <Route path="/contact" component={Contact} />
+          <Route path="/about" component={About} />
         </div>
       </div>
     </MuiThemeProvider>
