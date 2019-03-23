@@ -5,6 +5,12 @@ export default styles => ({
     display: 'flex',
   },
 
+  contentView: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    height: '100%'
+  },
+
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,

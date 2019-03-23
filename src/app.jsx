@@ -1,6 +1,7 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
-import { CssBaseline, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 import NavDrawer from './NavDrawer.jsx';
@@ -15,14 +16,13 @@ import PortfolioController from './controllers/PortfolioController.js';
 /* Views */
 import HomeView from './views/HomeView.jsx';
 import PortfolioView from './views/PortfolioView.jsx';
+import ContactView from './views/ContactView.jsx';
 
 function Index(props) {
   return <HomeView classes={classes} />;
 }
 
 function Portfolio(props) {
-  const { classes } = props;
-
   let controller = new PortfolioController();
   return <PortfolioView controller={controller} classes={classes} />;
 }
@@ -45,12 +45,6 @@ function renderView(view) {
   }
 }
 
-function handleNav(view) {
-
-  console.log(view);
-
-}
-
 function App(props) {
   const { classes } = props;
 
@@ -58,15 +52,12 @@ function App(props) {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <div id="app-root">
-        <AppBar position="static" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Home
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <NavDrawer handleNav={handleNav} classes={classes} />
-        
+        <NavDrawer classes={classes} />
+        <div classes={classes} className={classes.contentView}>
+          <Route path="/" exact component={Index} />
+          <Route path="/portfolio" component={Portfolio} />
+          <Route path="/contact" component={Contact} />
+        </div>
       </div>
     </MuiThemeProvider>
   )
