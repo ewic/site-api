@@ -19,3 +19,4 @@ node_modules
 npm-debug.log
 queue/*
 client/files/*
+client/bundle.js
